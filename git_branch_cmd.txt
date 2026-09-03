@@ -1,0 +1,6 @@
+版本1.0
+git branch                        看自己在哪
+git branch 分支名			创建分支					
+git checkout 分支名		切换到分支
+git merge 分名字			合并分支
+git branch -d 分支名            删除分支
