@@ -1,0 +1,43 @@
+版本1.0
+命令汇总（新手版，按使用顺序）
+命令 大白话解释 为啥用
+
+git --version 查看 Git 版本 验证是否安装成功
+
+git config --global user.name "名字" 设置全局用户名 让 Git 知道 “谁在改代码”
+
+git config --global user.email "邮箱" 设置全局邮箱 绑定 GitHub，避免推送报错
+
+git config --global user.name 查看用户名 验证是否设置正确
+
+git config --global user.email 查看邮箱 验证是否设置正确
+
+cd 文件夹路径 进入指定文件夹 Git 命令要在目标文件夹里执行
+
+git init 初始化本地仓库 把普通文件夹变成 Git 能管理的仓库
+
+git status 查看文件状态 知道哪些文件没被管、哪些改了
+
+git add 文件名 把文件加入暂存区 先 “选好要提交的文件”，再结账
+
+git add . 加入所有修改 / 未跟踪文件 懒人版，批量加文件
+
+git commit -m "提交信息" 提交暂存区文件到本地仓库 给代码 “拍快照”，记录修改
+
+git log 查看详细提交记录 回顾自己改了啥、啥时候改的
+
+git log --oneline 查看精简提交记录 快速看所有提交，不占屏幕
+
+git remote add origin 仓库地址 关联远程仓库 告诉本地 Git：代码要传到哪个 GitHub 仓库
+
+git remote -v 查看远程仓库关联信息 验证是否关联正确
+
+git remote remove origin 删除关联的远程仓库 关联错了，重新来
+
+git push -u origin main 第一次推代码到 GitHub 把本地代码传到云端，-u 记住路径
+
+git push 推代码到 GitHub 后续更新代码时用，不用输完整命令
+
+git pull origin main 从 GitHub 拉代码到本地 同步云端最新代码到本地
+
+git commit --amend -m "新信息" 修正上一次提交 补加漏传的文件，或改提交信息
