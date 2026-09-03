@@ -1,0 +1,80 @@
+git reflog
+ 
+ git reflog  叫引用日志，只保存在你本地电脑，不会上传到GitHub远程仓库。
+ 
+reset把提交弄丢了，靠它救回版本；记录你本地HEAD指针每一次移动。
+ 
+演示你的场景
+ 
+假设你执行：
+ 
+bash
+  
+git reset --hard d0ca416d04bc877ee48ca571ac0f7b98930cb5bf
+ 
+ 
+第三次提交在 git log 看不见了，好像被删掉。
+输入：
+ 
+bash
+  
+git reflog
+ 
+ 
+输出类似：
+ 
+plaintext
+  
+d0ca416 HEAD@{0}: reset: moving to d0ca416
+8388521 HEAD@{1}: commit: 第三次提交，增加了reset指令
+d0ca416 HEAD@{2}: commit: test01.txt第二次提交 版本1.1
+5bbd41d HEAD@{3}: commit: xxx
+ 
+ 
+ 8388521  就是被reset干掉的第三次提交哈希。
+ 
+恢复丢失版本
+ 
+bash
+  
+git reset --hard 8388521
+ 
+ 
+直接回到第三次提交，代码全部回来。
+ 
+reflog关键点
+ 
+1. 只存在本地！删除本地文件夹，reflog直接消失，找不回；github上看不到reflog。
+2. 有过期时间，默认90天之后旧记录会被git垃圾回收清理。
+3. 它记录所有操作：commit、reset、merge、checkout都会留下记录。
+ 
+面试区分（高频）
+ 
+1.  git log ：看分支提交历史，对外可见，push到远程。
+2.  git reflog ：本地操作痕迹，只有本机有，用来救误操作。
+ 
+
+Git回退完整总结（背这个）
+ 
+1. 代码还没push到远程（仅本地）
+ 
+- 想撤销提交、丢掉改动： git reset --hard 哈希 
+- 撤销提交，保留代码： git reset --soft 哈希 
+- 万一reset错了： git reflog  找回丢失commit
+ 
+2. 代码已经push到GitHub远程仓库（多人协作）
+ 
+- ❌禁止 reset，会改写公共历史
+- ✅用  git revert 错误commit哈希 ，生成新提交抵消修改，正常push
+ 
+易错坑
+ 
+reset --hard + push‑f 强制推送，会把别人远程提交抹掉，团队工作绝对禁止这么干。
+ 
+快速面试小问答
+ 
+问：reset --hard删除的commit一定找不回吗？
+ 
+本地仓库没删、没到过期时间： git reflog 可以救；本地文件夹删掉，彻底无法恢复。
+ 
+要不要我整理一份简短git面试速记，把reset/revert/reflog浓缩成几句，方便记？
